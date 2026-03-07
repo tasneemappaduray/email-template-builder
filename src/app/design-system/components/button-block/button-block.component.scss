@@ -1,0 +1,37 @@
+@use "app/design-system/styles/variables" as *;
+
+.button-block {
+  padding: $space-3 $space-4;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__btn {
+    display: inline-block;
+    padding: $space-1 $space-4;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    text-decoration: none;
+    border-radius: $border-radius;
+    border: 2px solid transparent;
+    transition: opacity $transition-base;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &--primary {
+      background-color: $color-primary;
+      color: $color-white;
+      border-color: $color-primary;
+    }
+
+    &--secondary {
+      background-color: transparent;
+      color: $color-secondary;
+      border-color: $color-secondary;
+    }
+  }
+}
