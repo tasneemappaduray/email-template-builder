@@ -1,0 +1,176 @@
+@use "app/design-system/styles/variables" as *;
+
+.builder {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  font-family: $font-family-base;
+}
+
+// ── Sidebar ──────────────────────────────────────────────
+.builder__sidebar {
+  width: 300px;
+  min-width: 300px;
+  background-color: $color-secondary;
+  color: $color-white;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding: $space-3;
+}
+
+.sidebar__heading {
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-primary;
+  margin: 0 0 $space-2;
+}
+
+.sidebar__section {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: $space-3;
+}
+
+.sidebar__block-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.sidebar__block-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: $font-size-sm;
+}
+
+// ── Form ─────────────────────────────────────────────────
+.form__label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: $font-size-sm;
+  color: $color-white;
+  margin-bottom: $space-2;
+}
+
+.form__input {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: $border-radius-sm;
+  color: $color-white;
+  font-family: $font-family-base;
+  font-size: $font-size-sm;
+  padding: $space-1;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color $transition-base;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+  }
+}
+
+.form__textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+// ── Buttons ───────────────────────────────────────────────
+.btn {
+  border: none;
+  border-radius: $border-radius-sm;
+  font-family: $font-family-base;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  transition: opacity $transition-base;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &--primary {
+    background-color: $color-primary;
+    color: $color-white;
+  }
+
+  &--sm {
+    font-size: $font-size-sm;
+    padding: 4px $space-2;
+  }
+}
+
+// ── Preview Panel ─────────────────────────────────────────
+.builder__preview {
+  flex: 1;
+  background-color: #1a1a2e;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  padding: $space-4;
+}
+
+.preview__canvas {
+  background-color: $color-white;
+  width: 100%;
+  max-width: 600px;
+  min-height: 400px;
+  border-radius: $border-radius;
+  box-shadow: $shadow-lg;
+  overflow: hidden;
+  align-self: flex-start;
+}
+
+.preview__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: $color-muted;
+  font-size: $font-size-sm;
+  text-align: center;
+  padding: $space-4;
+}
+
+.preview__block {
+  position: relative;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color $transition-base;
+
+  &:hover {
+    border-color: rgba(0, 180, 216, 0.4);
+  }
+
+  &--selected {
+    border-color: $color-primary;
+  }
+}
+
+.preview__remove {
+  position: absolute;
+  top: $space-1;
+  right: $space-1;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: $color-white;
+  border: none;
+  border-radius: $border-radius-pill;
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity $transition-base;
+
+  .preview__block:hover & {
+    opacity: 1;
+  }
+}

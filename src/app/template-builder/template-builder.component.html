@@ -1,0 +1,133 @@
+<div class="builder">
+
+  <!-- Sidebar -->
+  <aside class="builder__sidebar">
+
+    <!-- Block Picker -->
+    <div class="sidebar__section">
+      <h2 class="sidebar__heading">Add Blocks</h2>
+      <div class="sidebar__block-list">
+        <div *ngFor="let item of blockTypes" class="sidebar__block-item">
+          <span>{{ item.label }}</span>
+          <button class="btn btn--primary btn--sm" (click)="addBlock(item.type)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Form -->
+    <div class="sidebar__section" *ngIf="service.selectedBlock() as block">
+      <h2 class="sidebar__heading">Edit Block</h2>
+
+      <!-- Header Form -->
+      <ng-container *ngIf="block.type === 'header'">
+        <label class="form__label">Title
+          <input class="form__input" type="text" [ngModel]="asHeader(block).title"
+            (ngModelChange)="updateBlock(block.id, { title: $event })" />
+        </label>
+        <label class="form__label">Logo URL
+          <input class="form__input" type="text" [ngModel]="asHeader(block).logoUrl"
+            (ngModelChange)="updateBlock(block.id, { logoUrl: $event })" />
+        </label>
+        <label class="form__label">Background Colour
+          <input class="form__input" type="color" [ngModel]="asHeader(block).bgColor || '#00B4D8'"
+            (ngModelChange)="updateBlock(block.id, { bgColor: $event })" />
+        </label>
+      </ng-container>
+
+      <!-- Text Form -->
+      <ng-container *ngIf="block.type === 'text'">
+        <label class="form__label">Content
+          <textarea class="form__input form__textarea" [ngModel]="asText(block).content"
+            (ngModelChange)="updateBlock(block.id, { content: $event })"></textarea>
+        </label>
+        <label class="form__label">Alignment
+          <select class="form__input" [ngModel]="asText(block).alignment"
+            (ngModelChange)="updateBlock(block.id, { alignment: $event })">
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+          </select>
+        </label>
+      </ng-container>
+
+      <!-- Image Form -->
+      <ng-container *ngIf="block.type === 'image'">
+        <label class="form__label">Image URL
+          <input class="form__input" type="text" [ngModel]="asImage(block).src"
+            (ngModelChange)="updateBlock(block.id, { src: $event })" />
+        </label>
+        <label class="form__label">Alt Text
+          <input class="form__input" type="text" [ngModel]="asImage(block).alt"
+            (ngModelChange)="updateBlock(block.id, { alt: $event })" />
+        </label>
+        <label class="form__label">Width (e.g. 100%, 300px)
+          <input class="form__input" type="text" [ngModel]="asImage(block).width"
+            (ngModelChange)="updateBlock(block.id, { width: $event })" />
+        </label>
+      </ng-container>
+
+      <!-- Button Form -->
+      <ng-container *ngIf="block.type === 'button'">
+        <label class="form__label">Label
+          <input class="form__input" type="text" [ngModel]="asButton(block).label"
+            (ngModelChange)="updateBlock(block.id, { label: $event })" />
+        </label>
+        <label class="form__label">URL
+          <input class="form__input" type="text" [ngModel]="asButton(block).url"
+            (ngModelChange)="updateBlock(block.id, { url: $event })" />
+        </label>
+        <label class="form__label">Variant
+          <select class="form__input" [ngModel]="asButton(block).variant"
+            (ngModelChange)="updateBlock(block.id, { variant: $event })">
+            <option value="primary">Primary</option>
+            <option value="secondary">Secondary</option>
+          </select>
+        </label>
+      </ng-container>
+    </div>
+
+  </aside>
+
+  <!-- Preview Panel -->
+  <main class="builder__preview">
+    <div class="preview__canvas">
+
+      <ng-container *ngIf="service.blocks().length === 0">
+        <div class="preview__empty">
+          Add blocks from the sidebar to start building your template
+        </div>
+      </ng-container>
+
+      <ng-container *ngFor="let block of service.blocks()">
+        <div
+          class="preview__block"
+          [class.preview__block--selected]="service.selectedId() === block.id"
+          (click)="selectBlock(block.id)"
+        >
+          <button class="preview__remove" (click)="$event.stopPropagation(); removeBlock(block.id)">✕</button>
+
+          <app-header-block *ngIf="block.type === 'header'"
+            [title]="asHeader(block).title"
+            [logoUrl]="asHeader(block).logoUrl"
+            [bgColor]="asHeader(block).bgColor" />
+
+          <app-text-block *ngIf="block.type === 'text'"
+            [content]="asText(block).content"
+            [alignment]="asText(block).alignment" />
+
+          <app-image-block *ngIf="block.type === 'image'"
+            [src]="asImage(block).src"
+            [alt]="asImage(block).alt"
+            [width]="asImage(block).width" />
+
+          <app-button-block *ngIf="block.type === 'button'"
+            [label]="asButton(block).label"
+            [url]="asButton(block).url"
+            [variant]="asButton(block).variant" />
+        </div>
+      </ng-container>
+
+    </div>
+  </main>
+
+</div>
