@@ -1,0 +1,42 @@
+// --- Colors ---
+$color-primary: #00b4d8;
+$color-secondary: #2d3748;
+$color-white: #ffffff;
+$color-light: #f7fafc;
+$color-border: #e2e8f0;
+$color-text: #1a202c;
+$color-muted: #718096;
+
+// --- Typography ---
+$font-family-base: "Inter", "Segoe UI", sans-serif;
+$font-size-base: 1rem;
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$line-height-base: 1.5;
+
+// --- Spacing Scale (8px base unit) ---
+$space-1: 8px;
+$space-2: 16px;
+$space-3: 24px;
+$space-4: 32px;
+$space-5: 40px;
+$space-6: 48px;
+$space-8: 64px;
+$space-10: 80px;
+
+// --- Border Radius ---
+$border-radius-sm: 4px;
+$border-radius: 8px;
+$border-radius-lg: 16px;
+$border-radius-pill: 9999px;
+
+// --- Shadows ---
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+// --- Transitions ---
+$transition-base: 150ms ease;

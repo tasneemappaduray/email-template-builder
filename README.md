@@ -1,59 +1,71 @@
-# HelloWorld
+# Email Template Builder
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.22.
+A simplified Angular application that allows users to assemble email layouts from pre-built, reusable content blocks.
 
-## Development server
+## Tech Stack
 
-To start a local development server, run:
+- **Framework**: Angular 17+ (standalone components)
+- **Language**: TypeScript (strict mode)
+- **Styling**: SCSS + Bootstrap 5 (grid and utilities only)
+- **Component Docs**: Storybook for Angular
+- **Testing**: Jasmine/Karma
+- **State Management**: Angular Signals
+
+---
+
+## Setup
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Run the app
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open [http://localhost:4200](http://localhost:4200)
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 3. Run Storybook
 
 ```bash
-ng generate component component-name
+npm run storybook
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Open [http://localhost:6006](http://localhost:6006)
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 4. Run tests
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## Approach & Decisions
 
-```bash
-ng e2e
-```
+- **Standalone components** were used throughout to keep the architecture modern and avoid NgModule boilerplate.
+- **Angular Signals** power the reactive state in `TemplateService` — sidebar edits flow directly into `@Input()` bindings on preview components, triggering `OnPush` re-renders without manual change detection.
+- **Design tokens** are centralised in `_variables.scss` and consumed by all block components via `@use` — no hard-coded colours anywhere.
+- **Bootstrap 5** is used for grid and utility classes only. No Bootstrap JS or component classes are used.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## Assumptions & Trade-offs
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- No drag-and-drop reordering — blocks are added/removed only, as per the spec.
+- No persistence — block state lives in memory via Angular Signals and resets on page refresh.
+- Storybook stories use `picsum.photos` for placeholder images in the `ImageBlock` stories.
+
+---
+
+## What I Would Improve Given More Time
+
+- Add drag-and-drop reordering of blocks using Angular CDK.
+- Export the assembled template as an HTML string for use in real email campaigns.
+- Add more block types (e.g., Divider, Spacer, Social Links).
+- Improve Storybook with a theme decorator to apply design tokens globally across all stories.
+- Add e2e tests with Cypress or Playwright.

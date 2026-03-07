@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@use "app/design-system/styles/variables" as *;
+
+// Import Bootstrap 5 grid and utilities only
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/grid";
+
+// Import design system variables
+@import "./app/design-system/styles/variables";
+
+body {
+  font-family: $font-family-base;
+  background: #000000;
+}
