@@ -7,31 +7,73 @@
   justify-content: center;
 
   &__btn {
-    display: inline-block;
-    padding: $space-1 $space-4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px $space-5;
     font-family: $font-family-base;
-    font-size: $font-size-base;
-    font-weight: $font-weight-bold;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     text-decoration: none;
-    border-radius: $border-radius;
-    border: 2px solid transparent;
-    transition: opacity $transition-base;
+    border-radius: $border-radius-pill;
+    border: 1.5px solid transparent;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all $transition-slow;
 
-    &:hover {
-      opacity: 0.85;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.35) 50%,
+        transparent 100%
+      );
+      transition: left 0.55s ease;
+    }
+
+    &:hover::after {
+      left: 140%;
     }
 
     &--primary {
-      background-color: $color-primary;
+      background: linear-gradient(135deg, $color-primary 0%, #d4958a 100%);
       color: $color-white;
-      border-color: $color-primary;
+      border-color: transparent;
+      box-shadow: 0 4px 20px rgba(201, 132, 122, 0.35);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(201, 132, 122, 0.45);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
     }
 
     &--secondary {
-      background-color: transparent;
-      color: $color-secondary;
-      border-color: $color-secondary;
+      background: transparent;
+      color: $color-primary;
+      border-color: $color-primary;
+
+      &:hover {
+        background: rgba(201, 132, 122, 0.06);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(201, 132, 122, 0.15);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
     }
   }
 }

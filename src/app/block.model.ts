@@ -35,7 +35,7 @@ export interface ButtonBlock extends BaseBlock {
 export type Block = HeaderBlock | TextBlock | ImageBlock | ButtonBlock;
 
 export const DEFAULT_BLOCKS: Record<BlockType, Omit<Block, 'id'>> = {
-  header: { type: 'header', title: 'Your Header Title', bgColor: '#00B4D8' } as Omit<HeaderBlock, 'id'>,
+  header: { type: 'header', title: 'Your Header Title', bgColor: '#C9847A' } as Omit<HeaderBlock, 'id'>,
   text:   { type: 'text',   content: 'Your text content goes here.', alignment: 'left' } as Omit<TextBlock, 'id'>,
   image:  { type: 'image',  src: 'https://picsum.photos/600/200', alt: 'Sample image' } as Omit<ImageBlock, 'id'>,
   button: { type: 'button', label: 'Click Here', url: 'https://example.com', variant: 'primary' } as Omit<ButtonBlock, 'id'>

@@ -9,7 +9,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
       <img
         [src]="src"
         [alt]="alt"
-        [style.width]="width || '100%'"
+        [style.width]="width || null"
         class="image-block__img"
       />
     </div>
