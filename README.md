@@ -56,7 +56,6 @@ ng test
 
 ## Assumptions & Trade-offs
 
-- No drag-and-drop reordering — blocks are added/removed only, as per the spec.
 - No persistence — block state lives in memory via Angular Signals and resets on page refresh.
 - Storybook stories use `picsum.photos` for placeholder images in the `ImageBlock` stories.
 
@@ -64,7 +63,6 @@ ng test
 
 ## What I Would Improve Given More Time
 
-- Add drag-and-drop reordering of blocks using Angular CDK.
 - Export the assembled template as an HTML string for use in real email campaigns.
 - Add more block types (e.g., Divider, Spacer, Social Links).
 - Improve Storybook with a theme decorator to apply design tokens globally across all stories.
